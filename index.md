@@ -1,6 +1,6 @@
 # HokStack Helm Repository
 
-![HokStack](https://i.imgur.com/OpZGcib.png)
+![HokStack](https://raw.githubusercontent.com/hokstack/hok-helm/master/images/cover.png)
 
 Add HokStack repository to Helm repos:
 
