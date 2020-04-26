@@ -8,17 +8,41 @@ Add HokStack repository to Helm repos:
 helm repo add hok/hokstack https://charts.hokstack.io
 ```
 
-## Install HokStack
-
-```bash
-Command here
+### Adding Hadoop on Kubernetes repository
+```
+$ helm repo add hok https://raw.githubusercontent.com/hokstack/hok-helm/master/repos/stable
 ```
 
-For more details on installing HokStack please see the [hok-helm readme](https://github.com/hokstack/hok-helm/blob/master/README.md).
+### Update procedure
 
-## Install HokStack Operator
+To update simply update your helm repositories and check the latest version
 
-```bash
-Command here
 ```
+$ helm repo update
+```
+### Repo search
+
+You can then check for the latest version by searching your Helm repositories for the HokStack
+
+```
+$ helm search hok 
+```
+
+### Rollout for first team with default values
+
+You can then check for the latest version by searching your Helm repositories for the HokStack
+
+```
+$ helm install hok/hokstack --name hok-team1 --set teamname=team1 --namespace team1
+```
+
+### Rollout for second team with default values
+
+You can then check for the latest version by searching your Helm repositories for the HokStack
+
+```
+$ helm install hok/hokstack --name hok-team2 --set teamname=team2 --set metacontroller.crds.create=false --namespace team2
+```
+
+
 For more details on installing HokStack please see the [hok-helm readme](https://github.com/hokstack/hok-helm/blob/master/README.md).
