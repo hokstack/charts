@@ -1,66 +1,51 @@
----
-layout: default
----
+# HokStack Helm Repository
 
-### HokStack HELM Chart Repository
+![HokStack](https://raw.githubusercontent.com/hokstack/hok-helm/master/images/cover.png)
 
-You can add this repository to your local helm configuration as follows :
 
-```console
-$ helm repo add {{ site.repo_name }} {{ site.url }}
-$ helm repo update
-$ helm search hok
+### Adding Hadoop on Kubernetes repository
+```
+$ helm repo add hok https://charts.hokstack.io
 ```
 
-### Charts
+### Update procedure
 
-{% for helm_chart in site.data.index.entries %}
-{% assign title = helm_chart[0] | capitalize %}
-{% assign all_charts = helm_chart[1] | sort: 'created' | reverse %}
-{% assign latest_chart = all_charts[0] %}
+To update simply update your helm repositories and check the latest version
 
-<h3>
-  {% if latest_chart.icon %}
-  <img src="{{ latest_chart.icon }}" style="height:1.2em;vertical-align: text-top;" />
-  {% endif %}
-  {{ title }}
-</h3>
+```
+$ helm repo update
+```
+### Repo search
 
-[Home]({{ latest_chart.home }}) \| [Source]({{ latest_chart.sources[0] }})
+You can then check for the latest version by searching your Helm repositories for the HokStack
 
-{{ latest_chart.description }}
-
+```
+$ helm search hok 
+```
 
 ### Rollout for first team with default values
 
 You can then check for the latest version by searching your Helm repositories for the HokStack
 
-```console
-$ helm install {{ site.repo_name }}/{{ latest_chart.name }} --name hok-team1 --set teamname=team1 --namespace team1
+```
+$ helm install hok/hokstack --name hok-team1 --set teamname=team1 --namespace team1
 ```
 
 ### Rollout for second team with default values
 
 You can then check for the latest version by searching your Helm repositories for the HokStack
 
-```console
-$ helm install {{ site.repo_name }}/{{ latest_chart.name }} --name hok-team2 --set teamname=team2 --set metacontroller.crds.create=false --namespace team2
+```
+$ helm install hok/hokstack --name hok-team2 --set teamname=team2 --set metacontroller.crds.create=false --namespace team2
 ```
 
 ### Remove hadoop-on-kubernetes
 
-Remove helm chart:
+Remove OneAgent custom resources and clean-up all remaining OneAgent Operator specific objects:
 
 ```
 $ helm remove <release name> -n <namespace>
 ```
 
-| Chart Version | App Version | Date |
-|---------------|-------------|------|
-{% for chart in all_charts -%}
-{% unless chart.version contains "-" -%}
-| [{{ chart.name }}-{{ chart.version }}]({{ chart.urls[0] }}) | {{ chart.appVersion }} | {{ chart.created | date_to_rfc822 }} |
-{% endunless -%}
-{% endfor -%}
 
-{% endfor %}
+For more details on installing HokStack please see the [hok-helm readme](https://github.com/hokstack/hok-helm/blob/master/README.md).
