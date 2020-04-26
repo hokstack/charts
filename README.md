@@ -5,7 +5,7 @@
 
 ### Adding Hadoop on Kubernetes repository
 ```
-$ helm repo add hok https://raw.githubusercontent.com/hokstack/hok-helm/master/repos/stable
+$ helm repo add hok https://charts.hokstack.io
 ```
 
 ### Update procedure
