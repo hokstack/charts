@@ -2,9 +2,7 @@
 layout: default
 ---
 
-## HokStack - Stable HELM Chart Repository
-
-{{ site.description }}
+### HokStack HELM Chart Repository
 
 You can add this repository to your local helm configuration as follows :
 
@@ -14,7 +12,7 @@ $ helm repo update
 $ helm search hok
 ```
 
-## Charts
+### Charts
 
 {% for helm_chart in site.data.index.entries %}
 {% assign title = helm_chart[0] | capitalize %}
@@ -32,29 +30,26 @@ $ helm search hok
 
 {{ latest_chart.description }}
 
+
+### Rollout for first team with default values
+
+You can then check for the latest version by searching your Helm repositories for the HokStack
+
 ```console
-$ helm install {{ site.repo_name }}/{{ latest_chart.name }} --name myrelease --version {{ latest_chart.version }}
+$ helm install {{ site.repo_name }}/{{ latest_chart.name }} --name hok-team1 --set teamname=team1 --namespace team1
 ```
 
-## Rollout for first team with default values
+### Rollout for second team with default values
 
 You can then check for the latest version by searching your Helm repositories for the HokStack
 
-```
-$ helm install hok/hokstack --name hok-team1 --set teamname=team1 --namespace team1
-```
-
-## Rollout for second team with default values
-
-You can then check for the latest version by searching your Helm repositories for the HokStack
-
-```
-$ helm install hok/hokstack --name hok-team2 --set teamname=team2 --set metacontroller.crds.create=false --namespace team2
+```console
+$ helm install {{ site.repo_name }}/{{ latest_chart.name }} --name hok-team2 --set teamname=team2 --set metacontroller.crds.create=false --namespace team2
 ```
 
-## Remove hadoop-on-kubernetes
+### Remove hadoop-on-kubernetes
 
-Remove OneAgent custom resources and clean-up all remaining OneAgent Operator specific objects:
+Remove helm chart:
 
 ```
 $ helm remove <release name> -n <namespace>
