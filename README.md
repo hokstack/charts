@@ -5,7 +5,7 @@
 Add HokStack repository to Helm repos:
 
 ```bash
-helm repo add fluxcd https://charts.hokstack.io
+helm repo add hok/hokstack https://charts.hokstack.io
 ```
 
 ## Install HokStack
