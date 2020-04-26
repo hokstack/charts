@@ -2,15 +2,10 @@
 
 ![HokStack](https://raw.githubusercontent.com/hokstack/hok-helm/master/images/cover.png)
 
-Add HokStack repository to Helm repos:
-
-```bash
-helm repo add hok/hokstack https://charts.hokstack.io
-```
 
 ### Adding Hadoop on Kubernetes repository
 ```
-$ helm repo add hok https://charts.hokstack.io
+$ helm repo add hok https://raw.githubusercontent.com/hokstack/hok-helm/master/repos/stable
 ```
 
 ### Update procedure
@@ -42,6 +37,14 @@ You can then check for the latest version by searching your Helm repositories fo
 
 ```
 $ helm install hok/hokstack --name hok-team2 --set teamname=team2 --set metacontroller.crds.create=false --namespace team2
+```
+
+### Remove hadoop-on-kubernetes
+
+Remove OneAgent custom resources and clean-up all remaining OneAgent Operator specific objects:
+
+```
+$ helm remove <release name> -n <namespace>
 ```
 
 
